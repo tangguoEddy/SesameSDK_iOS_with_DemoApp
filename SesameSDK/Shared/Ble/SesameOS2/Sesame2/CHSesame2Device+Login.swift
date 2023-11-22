@@ -67,35 +67,6 @@ extension CHSesame2Device {
     }
     
     func requestSyncTime( _ result: @escaping CHResult<Any>) {
-        if let sessionToken = self.cipher?.sessionToken {
-            let reqBody: NSDictionary = [
-                "st": sessionToken.base64EncodedString()
-            ]
-            
-            CHAccountManager
-                .shared
-                .API(request: .init(.post, "", reqBody)) { response in
-                    switch response {
-                    case .success(let data):
-                        guard let data = data else {
-                            L.d("🕒", NSError.noContent)
-                            return
-                        }
-                        // todo kill this parcer
-                        guard let dict = try? data.decodeJsonDictionary() as? NSDictionary,
-                              let b64Payload = dict["r"] as? String,
-                              let payload = Data(base64Encoded: b64Payload) else {
-                            return
-                        }
-                        self.sendSyncTime(payload: payload){ res in
-                            result(.success(CHResultStateBLE(input: CHEmpty())))
-                            
-                        }
-                    case .failure(let error):
-                        L.d("🕒",error)
-                    }
-                }
-        }
     }
 
     func sendSyncTime(payload: Data, _ result: @escaping CHResult<Any>) {

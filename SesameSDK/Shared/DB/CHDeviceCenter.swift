@@ -14,7 +14,7 @@ class CHDeviceCenter {
     static let shared = CHDeviceCenter()
     var backgroundContext: NSManagedObjectContext?
     var persistentContainer: NSPersistentContainer?
-    var cacheDevices: [CHDeviceMO] = []
+    var cacheDevices: [CHDeviceMO]! = []
 
     func initDevices() {
         guard let backgroundContext = backgroundContext else {

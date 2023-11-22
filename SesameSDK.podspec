@@ -91,8 +91,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "SesameSDK/Shared/**/*.swift"
-  spec.source_files  = "SesameSDK/Shared/**/*.{h,c}"
+  spec.source_files  = "SesameSDK/Shared/**/*.{swift,h,c}"
 
   # spec.exclude_files = "Classes/Exclude"
 
@@ -107,7 +106,7 @@ Pod::Spec.new do |spec|
   #  non-essential files like tests, examples and documentation.
   #
 
-  # spec.resource  = "icon.png"
+  spec.resource  = "SesameSDK/Shared/**/*.xcdatamodeld"
   # spec.resources = "Resources/*.png"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
